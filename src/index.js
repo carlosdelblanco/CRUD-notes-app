@@ -10,7 +10,7 @@ app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
 app.engine(
   ".hbs",
-  exphbs({
+  exphbs.engine({
     defaultLayout: "main",
     layoutsDir: path.join(app.get("views"), "layouts"),
     partialsDir: path.join(app.get("views"), "partials"),
@@ -31,6 +31,9 @@ app.use(
   })
 );
 
+//routes
+
+app.use(require("./routes/index"));
 //server is listening
 app.listen(app.get("port"), () => {
   console.log("server on port", app.get("port"));
